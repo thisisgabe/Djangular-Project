@@ -15,9 +15,10 @@ class UserManager(models.Manager):
 
         if User.objects.filter(email=form['email']):
             errors.append('Email must be unique')
-
         if not EMAIL_REGEX.match(form['email']):
             errors.append("Email must be valid")
+        if form['password'] != form['passwordRepeat']:
+            errors.append("Password's must match")
         if len(form['password']) < 8:
             errors.append("Password must be at least 8 characters long")
         return errors
