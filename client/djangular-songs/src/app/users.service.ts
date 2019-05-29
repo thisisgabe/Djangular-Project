@@ -13,11 +13,15 @@ export class UsersService {
 
   }
 
+  //TODO: remove this logic, move to component and make this method
+  //only return an observable
   createUser(userData: object): void {
     let obs = this.http.post<object>(`${this.baseUrl}/create/`, userData);
     obs.subscribe(
       (data: any) => {
         localStorage.setItem('user_id', data.id);
+        console.log('registration success!')
+        console.log(data)
       },
       (errors) => {
         console.log(errors);
@@ -25,17 +29,14 @@ export class UsersService {
     )
   }
 
-  loginUser(loginData: object): void {
-    let obs = this.http.post<object>(`${this.baseUrl}/login/`, loginData);
-    obs.subscribe(
-      (data: any) => {
-        localStorage.setItem('user_id', data.id);
-      },
-      (errors) => {
-        console.log(errors);
-      }
-    )
+  loginUser(loginData: object) {
+    return this.http.post<object>(`${this.baseUrl}/login/`, loginData);
   }
+
+  addSongToPlaylist(playlistData: object) {
+    return this.http.post<object>(`${this.baseUrl}/songs/add/`, playlistData);
+  }
+
 
   logout(): void {
     localStorage.clear();
