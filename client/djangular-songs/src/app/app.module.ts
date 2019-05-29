@@ -10,6 +10,7 @@ import { AllSongsComponent } from './all-songs/all-songs.component';
 import { SongDetailComponent } from './song-detail/song-detail.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     SongDetailComponent,
     UserDetailComponent,
     NotFoundComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,
