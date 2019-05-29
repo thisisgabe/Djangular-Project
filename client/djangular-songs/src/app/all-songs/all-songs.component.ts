@@ -10,6 +10,11 @@ export class AllSongsComponent implements OnInit {
   userName: string;
   userId: Number;
 
+  addSongData: object = {
+    title: '',
+    artist: ''
+  }
+
   constructor() { 
     this.userName = 'Gabe';
     this.userId = 1;

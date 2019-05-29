@@ -1,4 +1,51 @@
 <app-nav-bar firstName="{{userName}}" userId="{{userId}}"></app-nav-bar>
-<p>
-  all-songs works!
-</p>
+<div class="row">
+  <div class="col">
+    <h3>All the songs in our hub:</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Artist</th>
+          <th scope="col">Title</th>
+          <th scope="col">No. Times Song Has Been Added</th>
+          <th scope='col'>Add to Playlist</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let song of songs">
+          <td>{{song.artist}}</td>
+          <td><a href="#">{{song.title}}</a></td>
+          <td>{{song.num_added}}</td>
+          <td><a href="#" class="btn btn-primary">Add</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-6">
+    <h2>Add a song:</h2>
+    <form (submit)="addSong()">
+      <div class="form-group row">
+        <label for="title" class="col-sm-2 col-form-label">Title</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="title" name="title" placeholder=""
+            [(ngModel)]='addSongData.title'>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="artist" class="col-sm-2 col-form-label">Artist</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="artist" name="artist" placeholder=""
+            [(ngModel)]='addSongData.artist'>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-10">
+          <button type="submit" class="btn btn-primary" value="Register">Add Song</button>
+        </div>
+      </div>
+      <label>**need refresh and show all the songs</label>
+    </form>
+  </div>
+</div>
