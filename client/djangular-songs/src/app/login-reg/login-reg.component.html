@@ -1,63 +1,69 @@
 <div class="row">
   <div class="col-md-6 mx-auto">
     <h1 class="mb-4">Registration</h1>
-    <form action="/register_user" method="POST">
+    <form (submit)='submitRegister()'>
       <div class="form-group row">
-        <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
+        <label for="first_name" class="col-sm-2 col-form-label">First Name</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name">
+          <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name"
+            [(ngModel)]='registerData.first_name'>
         </div>
       </div>
       <div class="form-group row">
-        <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
+        <label for="last_name" class="col-sm-2 col-form-label">Last Name</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name">
+          <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name"
+            [(ngModel)]='registerData.last_name'>
         </div>
       </div>
       <div class="form-group row">
-        <label for="emailAddress" class="col-sm-2 col-form-label">Email</label>
+        <label for="email" class="col-sm-2 col-form-label">Email</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="emailAddress" name="emailAddress" placeholder="Email">
+          <input type="text" class="form-control" id="email" name="email" placeholder="Email"
+            [(ngModel)]='registerData.email'>
         </div>
       </div>
       <div class="form-group row">
-        <label for="passwordMain" class="col-sm-2 col-form-label">Password</label>
+        <label for="password" class="col-sm-2 col-form-label">Password</label>
         <div class="col-sm-10">
-          <input type="password" class="form-control" id="passwordMain" name="passwordMain" placeholder="Password">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+            [(ngModel)]='registerData.password'>
         </div>
       </div>
       <div class="form-group row">
         <label for="passwordRepeat" class="col-sm-2 col-form-label">Confirm Password</label>
         <div class="col-sm-10">
           <input type="password" class="form-control" id="passwordRepeat" name="passwordRepeat"
-            placeholder="Confirm Password">
+            placeholder="Confirm Password" [(ngModel)]='registerData.passwordRepeat'>
         </div>
       </div>
       <div class="form-group row">
         <div class="col-sm-10">
-          <button type="submit" class="btn btn-primary">Sign up</button>
+          <button type="submit" class="btn btn-primary" value="Register">Sign up</button>
         </div>
       </div>
     </form>
   </div>
   <div class="col-md-6 mx-auto">
     <h1 class="mb-4">Login</h1>
-    <form action="/login" method="POST">
+    <form (submit)='submitLogin()'>
       <div class="form-group row">
-        <label for="emailAddressLogin" class="col-sm-2 col-form-label">Email Address</label>
+        <label for="email" class="col-sm-2 col-form-label">Email Address</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="emailAddressLogin" name="emailAddress" placeholder="Email">
+          <input type="text" class="form-control" id="email" name="email" placeholder="Email"
+            [(ngModel)]='loginData.email'>
         </div>
       </div>
       <div class="form-group row">
-        <label for="passwordMainLogin" class="col-sm-2 col-form-label">Password</label>
+        <label for="password" class="col-sm-2 col-form-label">Password</label>
         <div class="col-sm-10">
-          <input type="password" class="form-control" id="passwordMainLogin" name="passwordMain" placeholder="Password">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+            [(ngModel)]='loginData.password'>
         </div>
       </div>
       <div class="form-group row">
         <div class="col-sm-10">
-          <button type="submit" class="btn btn-primary">Sign in</button>
+          <button type="submit" class="btn btn-primary" value="Login">Sign in</button>
         </div>
       </div>
     </form>

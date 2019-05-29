@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../users.service';
+
 
 @Component({
   selector: 'app-login-reg',
@@ -6,10 +8,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login-reg.component.scss']
 })
 export class LoginRegComponent implements OnInit {
+  registerData: object = {
+    first_name: '',
+    last_name: '',
+    email: '',
+    password: '',
+    passwordRepeat: ''
+  }
 
-  constructor() { }
+  loginData: object = {
+    email: '',
+    password: ''
+  }
+
+  constructor(private userService: UsersService) { 
+
+  }
 
   ngOnInit() {
+  }
+
+  submitRegister() {
+    this.userService.createUser(this.registerData);
+  }
+
+  submitLogin() {
+    this.userService.loginUser(this.loginData);
   }
 
 }
