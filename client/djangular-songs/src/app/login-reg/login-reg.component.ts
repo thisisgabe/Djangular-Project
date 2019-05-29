@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
 import { UsersService } from '../users.service';
 
 
@@ -21,9 +23,12 @@ export class LoginRegComponent implements OnInit {
     password: ''
   }
 
-  constructor(private userService: UsersService) { 
+  errors: string[];
 
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private userService: UsersService) { }
 
   ngOnInit() {
   }
@@ -33,7 +38,18 @@ export class LoginRegComponent implements OnInit {
   }
 
   submitLogin() {
-    this.userService.loginUser(this.loginData);
+    this.userService.loginUser(this.loginData)
+    .subscribe(
+      data => {
+        console.log('login success');
+        console.log(data);
+        this.router.navigate(['songs'])
+      },
+      errors => {
+        console.log('error logging in');
+        this.errors = errors.error;
+      }
+    )
   }
 
 }

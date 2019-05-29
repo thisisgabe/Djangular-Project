@@ -18,6 +18,8 @@ export class UsersService {
     obs.subscribe(
       (data: any) => {
         localStorage.setItem('user_id', data.id);
+        console.log('registration success!')
+        console.log(data)
       },
       (errors) => {
         console.log(errors);
@@ -25,16 +27,8 @@ export class UsersService {
     )
   }
 
-  loginUser(loginData: object): void {
-    let obs = this.http.post<object>(`${this.baseUrl}/login/`, loginData);
-    obs.subscribe(
-      (data: any) => {
-        localStorage.setItem('user_id', data.id);
-      },
-      (errors) => {
-        console.log(errors);
-      }
-    )
+  loginUser(loginData: object) {
+    return this.http.post<object>(`${this.baseUrl}/login/`, loginData);
   }
 
   logout(): void {
