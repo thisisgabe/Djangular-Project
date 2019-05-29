@@ -49,3 +49,30 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
+
+class SongManager(models.Manager):
+    def validate(self, form):
+        errors = []
+        if len(form['title']) < 2:
+            errors.append('Song title cannot be less than 2 characters!')
+        if len(form['title']) > 255:
+            errors.append('Song title cannot exceed 255 characters!')
+        if len(form['artist']) < 2:
+            errors.append('Artist name cannot be less than 2 characters!')
+        if len(form['artist']) > 255:
+            errors.append('Artist name cannot exceed 255 characters!')
+        return errors
+    
+    def easy_create(self, form):
+        return User.objects.create(
+            title=form['title'],
+            artist=form['artist'],
+        )
+
+class Song(models.Model):
+    title = models.CharField(max_length=255)
+    artist = models.CharField(max_length=255)
+    users_added = models.ManyToManyField(User, related_name='songs_added')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    objects = SongManager()
