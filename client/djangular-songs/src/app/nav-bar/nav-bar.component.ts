@@ -7,16 +7,19 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  @Input() firstName: string;
-  @Input() userId: Number;
+  @Input() public firstName: string;
+  @Input() public userId: Number;
 
   myName:string;
+  myId: Number;
 
   constructor() { 
-    this.myName = this.firstName;
   }
 
   ngOnInit() {
+    console.log(this.firstName);
+    this.myName = this.firstName;
+    this.myId = this.userId;
   }
 
 }
