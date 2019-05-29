@@ -15,7 +15,7 @@
         <tr *ngFor="let song of mySongs">
           <td>{{song.fields.artist}}</td>
           <td><a href="#">{{song.fields.title}}</a></td>
-          <td>{{song.users_added.length}}</td>
+          <td>{{song.fields.users_added.length}}</td>
           <td><a href="#" class="btn btn-primary">Add</a></td>
         </tr>
       </tbody>
@@ -25,7 +25,7 @@
 <div class="row">
   <div class="col-6">
     <h2>Add a song:</h2>
-    <form (submit)="addSong()">
+    <form #myForm="ngForm" (submit)="addSong()">
       <div class="form-group row">
         <label for="title" class="col-sm-2 col-form-label">Title</label>
         <div class="col-sm-10">

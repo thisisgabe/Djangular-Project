@@ -35,7 +35,7 @@ export class AllSongsComponent implements OnInit {
       data => {
         console.log('added song to db');
         console.log(data);
-        //get getSongs method
+        this.getSongs()
       },
       errors => {
         console.log('error adding song');
@@ -43,6 +43,8 @@ export class AllSongsComponent implements OnInit {
         this.errors = errors;
       }
     )
+    this.addSongData['title'] = '';
+    this.addSongData['artist'] = '';
   }
 
   getSongs(){
