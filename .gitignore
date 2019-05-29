@@ -1,0 +1,4 @@
+__pycache__/*
+*.pyc
+server/djangular_server/djangular_server/__pycache__/settings.cpython-37.pyc
+server/djangular_server/djangular_server/__pycache__/urls.cpython-37.pyc
