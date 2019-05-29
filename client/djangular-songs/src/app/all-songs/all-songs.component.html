@@ -12,10 +12,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let song of songs">
-          <td>{{song.artist}}</td>
-          <td><a href="#">{{song.title}}</a></td>
-          <td>{{song.num_added}}</td>
+        <tr *ngFor="let song of mySongs">
+          <td>{{song.fields.artist}}</td>
+          <td><a href="#">{{song.fields.title}}</a></td>
+          <td>{{song.users_added.length}}</td>
           <td><a href="#" class="btn btn-primary">Add</a></td>
         </tr>
       </tbody>

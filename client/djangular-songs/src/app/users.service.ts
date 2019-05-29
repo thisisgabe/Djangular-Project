@@ -13,6 +13,8 @@ export class UsersService {
 
   }
 
+  //TODO: remove this logic, move to component and make this method
+  //only return an observable
   createUser(userData: object): void {
     let obs = this.http.post<object>(`${this.baseUrl}/create/`, userData);
     obs.subscribe(
