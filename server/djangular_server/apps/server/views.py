@@ -34,15 +34,22 @@ def login(req):
 
 def create_song(req):
     post_data = json.loads(req.body.decode())
-    errors = User.objects.validate(post_data)
+    errors = Song.objects.validate(post_data)
+
     if errors:
         return HttpResponse(json.dumps(errors), status=400, content_type='application/json')
     
     # create a user, return user info as json
-    entire_user = User.objects.easy_create(post_data)
-    user = {
-        'first_name': entire_user.first_name,
-        'id': entire_user.id,
+    entire_song = Song.objects.easy_create(post_data)
+    song = {
+        'id': entire_song.id,
+        'artist': entire_song.artist,
+        'title': entire_song.title,
     }
-    json_user = json.dumps(user)
-    return HttpResponse(json_user, status=200, content_type="application/json")
+    json_song = json.dumps(song)
+    return HttpResponse(json_song, status=200, content_type="application/json")
+
+def get_songs(req):
+    all_songs = Song.objects.all()
+    data = serializers.serialize('json', all_songs)
+    return HttpResponse(data, status=200, content_type='application/json')

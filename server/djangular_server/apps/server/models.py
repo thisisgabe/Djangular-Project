@@ -64,7 +64,7 @@ class SongManager(models.Manager):
         return errors
     
     def easy_create(self, form):
-        return User.objects.create(
+        return Song.objects.create(
             title=form['title'],
             artist=form['artist'],
         )
