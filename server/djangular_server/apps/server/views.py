@@ -15,7 +15,6 @@ def create(req):
     user = {
         'first_name': entire_user.first_name,
         'id': entire_user.id,
-        'gold': entire_user.gold
     }
     json_user = json.dumps(user)
     return HttpResponse(json_user, status=200, content_type="application/json")
@@ -29,7 +28,6 @@ def login(req):
     user = {
         'first_name': result.first_name,
         'id': result.id,
-        'gold': result.gold
     }
     json_user = json.dumps(user)
     return HttpResponse(json_user, status=200, content_type='application/json')

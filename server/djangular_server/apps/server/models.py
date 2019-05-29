@@ -29,14 +29,15 @@ class UserManager(models.Manager):
             first_name=form['first_name'],
             last_name=form['last_name'],
             email=form['email'],
-            pw_hash=pw_hash,
+            pw_hash=pw_hash.decode('utf-8'),
         )
 
     def login(self, form):
         matching_users = User.objects.filter(email=form['email'])
         if matching_users:
             user = matching_users[0]
-            if bcrypt.checkpw(form['password'].encode(), user.pw_hash.encode()):
+            print(user)
+            if bcrypt.checkpw(form['password'].encode('utf-8'), user.pw_hash.encode('utf-8')):
                 return (True, user)
         return (False, "Email or password invalid")
 
