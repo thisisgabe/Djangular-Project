@@ -1,3 +1,14 @@
-<p>
-  nav-bar works!
-</p>
+<header>
+  <nav class="navbar navbar-expand-md sticky-top navbar-dark bg-dark justify-content-between">
+    <a class="navbar-brand" href="/">Welcome, {{myName}}!!</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+
+      </ul>
+
+      <a href="/users/edit">Edit My Account</a>
+      <a class="ml-2 btn btn-danger" href="/logout">Log Out</a>
