@@ -14,9 +14,9 @@
       <tbody>
         <tr *ngFor="let song of mySongs">
           <td>{{song.fields.artist}}</td>
-          <td><a href="#">{{song.fields.title}}</a></td>
+          <td><a [routerLink]="['/songs', song.pk]">{{song.fields.title}}</a></td>
           <td>{{song.fields.users_added.length}}</td>
-          <td><a href="#" class="btn btn-primary">Add</a></td>
+          <td><a [routerLink]="" class="btn btn-primary" (click)='addSongToPlaylist(song.pk)'>Add</a></td>
         </tr>
       </tbody>
     </table>
@@ -45,7 +45,6 @@
           <button type="submit" class="btn btn-primary" value="Register">Add Song</button>
         </div>
       </div>
-      <label>**need refresh and show all the songs</label>
     </form>
   </div>
 </div>

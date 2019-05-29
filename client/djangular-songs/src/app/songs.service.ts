@@ -16,4 +16,8 @@ export class SongsService {
   getSongs(): Observable<any[]>{
     return this.http.get<any[]>(`${this.baseUrl}/list/`);
   }
+
+  getSongUsers(getSongUserData: object): Observable<any[]>{
+    return this.http.post<any[]>(`${this.baseUrl}/users/`, getSongUserData);
+  }
 }

@@ -40,9 +40,12 @@ export class LoginRegComponent implements OnInit {
   submitLogin() {
     this.userService.loginUser(this.loginData)
     .subscribe(
-      data => {
+      (data: any) => {
         console.log('login success');
         console.log(data);
+        localStorage.setItem('user_id', data.id);
+        localStorage.setItem('first_name', data.first_name);
+        localStorage.setItem('last_name', data.last_name);
         this.router.navigate(['songs'])
       },
       errors => {

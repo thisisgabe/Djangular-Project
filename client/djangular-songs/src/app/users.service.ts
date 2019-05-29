@@ -33,6 +33,11 @@ export class UsersService {
     return this.http.post<object>(`${this.baseUrl}/login/`, loginData);
   }
 
+  addSongToPlaylist(playlistData: object) {
+    return this.http.post<object>(`${this.baseUrl}/songs/add/`, playlistData);
+  }
+
+
   logout(): void {
     localStorage.clear();
   }

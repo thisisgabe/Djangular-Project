@@ -6,6 +6,8 @@ urlpatterns = [
     url(r'^users/login/$', views.login),
     url(r'^songs/create/$', views.create_song),
     url(r'songs/list/$', views.get_songs),
+    url(r'users/songs/add/$', views.user_add_song),
+    url(r'songs/users/', views.get_song_users)
     # url(r'^$', views.index),
     # url(r'^shows/$', views.shows),
     # url(r'^shows/new/$', views.add_show),
