@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -13,13 +16,21 @@ export class NavBarComponent implements OnInit {
   myName:string;
   myId: Number;
 
-  constructor() { 
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private userService: UsersService) { 
   }
 
   ngOnInit() {
     console.log(this.firstName);
     this.myName = this.firstName;
     this.myId = this.userId;
+  }
+
+  logout() {
+    this.userService.logout();
+    this.router.navigate(['main'])
   }
 
 }
