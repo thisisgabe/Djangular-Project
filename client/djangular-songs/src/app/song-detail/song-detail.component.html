@@ -1,3 +1,20 @@
-<p>
-  song-detail works! {{songId}}
-</p>
+<app-nav-bar firstName="{{userName}}" userId="{{userId}}"></app-nav-bar>
+<div class="row my-2">
+  <div class="col">
+    <h2>Others who added {{song_info.song_artist}} - {{song_info.song_title}}</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Times Added</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of song_info.users">
+          <td><a [routerLink]="['/songs']">{{user.first_name}} {{user.last_name}}</a></td>
+          <td>{{user.count}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

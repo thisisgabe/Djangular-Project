@@ -76,3 +76,46 @@ class Song(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = SongManager()
+
+class PlaylistManager(models.Manager):
+    def easy_create(self, form):
+        try:
+            playlist = Playlist.objects.get(song=Song.objects.get(id=form['song_id']), user=User.objects.get(id=form['user_id']))
+        except Playlist.DoesNotExist:
+            playlist = None
+        print('testing.................')
+        print(playlist)
+        if playlist:
+            print('found playlist')
+            playlist.count = playlist.count + 1
+            playlist.save()
+            return playlist
+        else:
+            return Playlist.objects.create(song=Song.objects.get(id=form['song_id']), user=User.objects.get(id=form['user_id']), count=1)
+
+    def get_song_details(self, form):
+        song_info = Playlist.objects.filter(song=form['song_id'])
+        song = Song.objects.get(id=form['song_id'])
+        data = {
+            'song_id': song.id,
+            'song_title': song.title,
+            'song_artist': song.artist,
+            'users': []
+        }
+        if(song_info):
+            for entry in song_info:
+                user = User.objects.get(id=entry.user_id)
+                user_obj = {
+                    'first_name': user.first_name,
+                    'last_name': user.last_name,
+                    'count': entry.count
+                }
+                data['users'].append(user_obj)
+        return data
+
+class Playlist(models.Model):
+    song = models.ForeignKey(Song, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    count = models.IntegerField()
+    objects = PlaylistManager()
+
