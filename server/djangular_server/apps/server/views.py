@@ -1,5 +1,6 @@
 from django.shortcuts import HttpResponse
 from django.core import serializers
+from django.forms.models import model_to_dict
 from .models import *
 import json
 
@@ -49,20 +50,35 @@ def create_song(req):
     json_song = json.dumps(song)
     return HttpResponse(json_song, status=200, content_type="application/json")
 
+# def get_songs(req):
+#     all_songs = Song.objects.all()
+#     data = serializers.serialize('json', all_songs)
+#     return HttpResponse(data, status=200, content_type='application/json')
+
 def get_songs(req):
-    all_songs = Song.objects.all()
-    data = serializers.serialize('json', all_songs)
+    all_songs = Song.objects.get_all_songs()
+    data = json.dumps(all_songs)
     return HttpResponse(data, status=200, content_type='application/json')
 
 def user_add_song(req):
     post_data = json.loads(req.body.decode())
-    user = User.objects.get(id=post_data['user_id'])
-    user.songs_added.add(Song.objects.get(id=post_data['song_id']))
-    data = serializers.serialize('json', user.songs_added.all())
+    playlist = Playlist.objects.easy_create(post_data)
+    data = model_to_dict(playlist)
+    data = json.dumps(data)
     return HttpResponse(data, status=200, content_type='application/json')
 
 def get_song_users(req):
     post_data = json.loads(req.body.decode())
-    song = Song.objects.get(id=post_data['song_id'])
-    data = serializers.serialize('json', song.users_added.all())
+    data = Playlist.objects.get_song_details(post_data)
+    print(data)
+    data = json.dumps(data)
+    print(data)
+    return HttpResponse(data, status=200, content_type='application/json')
+
+def get_user_songs(req):
+    post_data = json.loads(req.body.decode())
+    data = User.objects.get_user_playlist(post_data)
+    print(data)
+    data = json.dumps(data)
+    print(data)
     return HttpResponse(data, status=200, content_type='application/json')

@@ -12,11 +12,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let song of mySongs">
-          <td>{{song.fields.artist}}</td>
-          <td><a [routerLink]="['/songs', song.pk]">{{song.fields.title}}</a></td>
-          <td>{{song.fields.users_added.length}}</td>
-          <td><a [routerLink]="" class="btn btn-primary" (click)='addSongToPlaylist(song.pk)'>Add</a></td>
+        <tr *ngFor="let song of data.songs">
+          <td>{{song.song_artist}}</td>
+          <td><a [routerLink]="['/songs', song.id]">{{song.song_title}}</a></td>
+          <td>{{song.count}}</td>
+          <td><a [routerLink]="" class="btn btn-primary" (click)='addSongToPlaylist(song.id)'>Add</a></td>
         </tr>
       </tbody>
     </table>
