@@ -39,7 +39,7 @@ class UserManager(models.Manager):
             print(user)
             if bcrypt.checkpw(form['password'].encode('utf-8'), user.pw_hash.encode('utf-8')):
                 return (True, user)
-        return (False, "Email or password invalid")
+        return (False, ["Email or password invalid"])
     
     def get_user_playlist(self, form):
         user = User.objects.get(id=form['user_id'])

@@ -34,7 +34,17 @@ export class LoginRegComponent implements OnInit {
   }
 
   submitRegister() {
-    this.userService.createUser(this.registerData);
+    this.userService.createUser(this.registerData)
+    .subscribe(
+      (data: any) => {
+        console.log('registration success!');
+        console.log(data);
+      },
+      (errors) => {
+        this.errors = errors.error;
+        console.log(errors);
+      }
+    )
   }
 
   submitLogin() {
@@ -50,7 +60,8 @@ export class LoginRegComponent implements OnInit {
       },
       errors => {
         console.log('error logging in');
-        this.errors = errors.error;
+        this.errors = errors.error
+        console.log(this.errors);
       }
     )
   }

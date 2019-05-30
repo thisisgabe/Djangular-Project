@@ -50,11 +50,6 @@ def create_song(req):
     json_song = json.dumps(song)
     return HttpResponse(json_song, status=200, content_type="application/json")
 
-# def get_songs(req):
-#     all_songs = Song.objects.all()
-#     data = serializers.serialize('json', all_songs)
-#     return HttpResponse(data, status=200, content_type='application/json')
-
 def get_songs(req):
     all_songs = Song.objects.get_all_songs()
     data = json.dumps(all_songs)
