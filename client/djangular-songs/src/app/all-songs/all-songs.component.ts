@@ -58,8 +58,8 @@ export class AllSongsComponent implements OnInit {
       },
       errors => {
         console.log('error adding song');
-        console.log(errors);
-        this.errors = errors;
+        this.errors = errors.error;
+        console.log(this.errors);
       }
     )
     this.addSongData['title'] = '';
