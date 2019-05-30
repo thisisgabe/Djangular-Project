@@ -50,9 +50,14 @@ def create_song(req):
     json_song = json.dumps(song)
     return HttpResponse(json_song, status=200, content_type="application/json")
 
+# def get_songs(req):
+#     all_songs = Song.objects.all()
+#     data = serializers.serialize('json', all_songs)
+#     return HttpResponse(data, status=200, content_type='application/json')
+
 def get_songs(req):
-    all_songs = Song.objects.all()
-    data = serializers.serialize('json', all_songs)
+    all_songs = Song.objects.get_all_songs()
+    data = json.dumps(all_songs)
     return HttpResponse(data, status=200, content_type='application/json')
 
 def user_add_song(req):
@@ -62,28 +67,17 @@ def user_add_song(req):
     data = json.dumps(data)
     return HttpResponse(data, status=200, content_type='application/json')
 
-# def get_song_users(req):
-#     post_data = json.loads(req.body.decode())
-#     print(post_data['song_id'])
-#     entire_song = Song.objects.get(id=post_data['song_id'])
-#     song = {
-#         'id': entire_song.id,
-#         'artist': entire_song.artist,
-#         'title': entire_song.title
-#     }
-#     data = {
-#         'song': model_to_dict(entire_song),
-#         #'users_added': list(entire_song.users_added.all().values())
-#         #'users_added': entire_song.users_added.all()
-#     }
-#     print(data)
-#     data = json.dumps(data)
-#     print(data)
-#     return HttpResponse(data, status=200, content_type='application/json')
-
 def get_song_users(req):
     post_data = json.loads(req.body.decode())
     data = Playlist.objects.get_song_details(post_data)
+    print(data)
+    data = json.dumps(data)
+    print(data)
+    return HttpResponse(data, status=200, content_type='application/json')
+
+def get_user_songs(req):
+    post_data = json.loads(req.body.decode())
+    data = User.objects.get_user_playlist(post_data)
     print(data)
     data = json.dumps(data)
     print(data)

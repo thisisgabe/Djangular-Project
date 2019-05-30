@@ -1,3 +1,22 @@
-<p>
-  user-detail works!
-</p>
+<app-nav-bar firstName="{{userName}}" userId="{{userId}}"></app-nav-bar>
+<div class="row my-2">
+  <div class="col">
+    <h2>{{user_playlist.user_first}} - {{user_playlist.user_last}}'s Playlist</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Artist</th>
+          <th scope="col">Title</th>
+          <th scope="col">Times Added</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let song of user_playlist.songs">
+          <td>{{song.song_artist}}</td>
+          <td>{{song.song_title}}</td>
+          <td>{{song.count}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
